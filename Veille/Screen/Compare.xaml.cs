@@ -54,17 +54,36 @@ namespace Veille.Screen
                 {
                     loadOptions = new LoadOptions(LoadFormat.Csv);
                 }
-                Filename = openFileDialog.FileName;            
                 //spire
-                AsposeAnalyse.Text= aspose.OpenFile(Filename, loadOptions).ToString();
+                AsposeAnalyse.Text= aspose.OpenFile(openFileDialog.FileName, loadOptions).ToString();
                 SpireAnalyse.Text = spire.OpenFile(openFileDialog.FileName).ToString();
                 GemboxAnalyse.Text = gembox.OpenFile(openFileDialog.FileName).ToString();
+                Filename = openFileDialog.SafeFileName;
+                _FileName.Content = Filename;
             }
         }
 
         private void WriteFile_Click(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrEmpty(this.Filename))
+            {
+                System.Windows.MessageBox.Show("Vous n'avez pas de chargé de fichier");
+                return;
+            }
+            var folder = new FolderBrowserDialog();
+            var result = folder.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = folder.SelectedPath + "\\" + this._FileName.Content;
+                var indexLastBackSlash = filename.LastIndexOf("\\");
+                var indexLastPoint= filename.LastIndexOf(".");
+                var path = filename.Substring(0, indexLastBackSlash);
+                var name = filename.Substring(indexLastBackSlash, indexLastPoint - indexLastBackSlash);
+                var ext = filename.Substring(indexLastPoint, filename.Length - indexLastPoint);
+                AsposeAnalyse.Text = aspose.WriteFile(path + name +"_aspose" + ext, SaveFormat.Auto).ToString();
+                SpireAnalyse.Text = spire.WriteFile(path + name+ "_spire" + ext).ToString();
+                GemboxAnalyse.Text = gembox.WriteFile(path + name + "_gembox" + ext).ToString();
+            }
         }
     }
 }
