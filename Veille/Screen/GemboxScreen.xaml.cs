@@ -25,12 +25,7 @@ namespace Veille.Screen
             if (((int)result) == 1)
             {
                 if (openFileDialog.SafeFileName == this.Filename)
-                    return;
-                var ext = openFileDialog.SafeFileName.Split('.')[1];
-                if (ext == "csv")
-                {
-                    //loadOptions = new LoadOptions(LoadFormat.Csv);
-                }
+                    return;               
                 Filename = openFileDialog.FileName;
                 var time = gembox.OpenFile(Filename);
                 _Time.Content = time;

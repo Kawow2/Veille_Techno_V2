@@ -10,8 +10,9 @@ namespace Veille.Framework
     public class Aspose
     {
         public Workbook Workbook { get; set; } = new Workbook();
-        public string OpenFile(string filename, LoadOptions lo = null)
-        {            
+        public ResultAnalysis OpenFile(string filename, LoadOptions lo = null)
+        {
+            var analysis = new ResultAnalysis();
             try
             {
                 if (this.Workbook != null)
@@ -23,18 +24,23 @@ namespace Veille.Framework
                 var fstream = new FileStream(filename, FileMode.Open);
                 this.Workbook = new Workbook(fstream, lo);
                 Timer.Stop();
+                analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
+                analysis.TimeInMs = Timer.GetTime();
             } catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-            return Timer.GetTime();
+            return analysis;
         }
-        public string WriteFile(string fileName,SaveFormat ext)
+        public ResultAnalysis WriteFile(string fileName,SaveFormat ext)
         {
+            var analysis = new ResultAnalysis();
             Timer.Start();
             this.Workbook.Save(fileName,ext);
             Timer.Stop();
-            return Timer.GetTime();
+            analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage(); 
+            analysis.TimeInMs = Timer.GetTime();
+            return analysis;
         }
     }
 }

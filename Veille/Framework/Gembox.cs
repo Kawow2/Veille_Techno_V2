@@ -18,20 +18,29 @@ namespace Veille.Framework
             SpreadsheetInfo.FreeLimitReached += (sender, e) => e.FreeLimitReachedAction = FreeLimitReachedAction.ContinueAsTrial;
             this.ef = new ExcelFile();
         }
-        public string OpenFile(string filename)
+        public ResultAnalysis OpenFile(string filename)
         {
+            var analysis = new ResultAnalysis();
+
             Timer.Start();
             this.ef = ExcelFile.Load(filename);
             Timer.Stop();
-            return Timer.GetTime();
+            analysis.TimeInMs = Timer.GetTime();
+            analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
+           
+            return analysis;
         }
 
-        public string WriteFile(string filename)
+        public ResultAnalysis WriteFile(string filename)
         {
+            var analysis = new ResultAnalysis();
+
             Timer.Start();
             this.ef.Save(filename);
             Timer.Stop();
-            return Timer.GetTime();
+            analysis.TimeInMs = Timer.GetTime();
+            analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
+            return analysis;
         }
 
 

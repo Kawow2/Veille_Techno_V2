@@ -84,12 +84,17 @@
     <Compile Include="Screen\AsposeScreen.xaml.cs">
       <DependentUpon>AsposeScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screen\Compare.xaml.cs">
+      <DependentUpon>Compare.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screen\GemboxScreen.xaml.cs">
       <DependentUpon>GemboxScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screen\SpireScreen.xaml.cs">
       <DependentUpon>SpireScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\PerformanceAnalysis.cs" />
+    <Compile Include="Tools\ResultAnalysis.cs" />
     <Compile Include="Tools\Timer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Screen\AsposeScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screen\Compare.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

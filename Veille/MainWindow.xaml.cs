@@ -43,5 +43,11 @@ namespace Veille
             var a = new GemboxScreen();
             a.Show();
         }
+
+        private void OpenCompare_Click(object sender, RoutedEventArgs e)
+        {
+            var a = new Compare();
+            a.Show();
+        }
     }
 }
