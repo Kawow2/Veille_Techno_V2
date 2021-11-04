@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Veille.Tools;
 
-namespace BIGEARD_VEILLE_TECHNOLOGIQUE.Framework
+namespace Veille.Framework
 {
     public class Gembox
     {
