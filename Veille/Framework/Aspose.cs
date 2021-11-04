@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using Veille.Tools;
 
-namespace BIGEARD_VEILLE_TECHNOLOGIQUE.Framework
+namespace Veille.Framework
 {
     public class Aspose
     {

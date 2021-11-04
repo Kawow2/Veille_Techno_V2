@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aspose.Cells;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Veille.Tools;
+using System.Windows.Forms;
+using Veille.Framework;
 
 namespace Veille.Screen
 {
@@ -19,23 +9,54 @@ namespace Veille.Screen
     /// Logique d'interaction pour AsposeScreen.xaml
     /// </summary>
     /// 
-    
+
     public partial class AsposeScreen : Window
     {
+        public string Filename { get; set; }
+        public Framework.Aspose aspose { get; set; }
 
         public AsposeScreen()
         {
             InitializeComponent();
+            aspose = new Framework.Aspose();
         }
 
         private void OpenFile(object sender, RoutedEventArgs e)
         {
-
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm|CSV files (*.csv)|*.csv";
+            var result = openFileDialog.ShowDialog();
+            if (((int)result) == 1)
+            {
+                if (openFileDialog.FileName == this.Filename)
+                    return;
+                LoadOptions loadOptions = null;
+                var ext = openFileDialog.SafeFileName.Split('.')[1];
+                if (ext == "csv")
+                {
+                    loadOptions = new LoadOptions(LoadFormat.Csv);
+                }
+                Filename = openFileDialog.FileName;
+                var time = aspose.OpenFile(Filename, loadOptions);
+                this._Time.Content = time;
+                this._FileName.Content = openFileDialog.SafeFileName;
+            }
         }
 
         private void WriteFile(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrEmpty(this.Filename))
+            {
+                System.Windows.MessageBox.Show("Vous n'avez pas de charger de fichier");
+                return;
+            }
+            var folder = new FolderBrowserDialog();
+            var result = folder.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = folder.SelectedPath + "\\" + this._FileName.Content;
+                this._Time.Content = aspose.WriteFile(filename, SaveFormat.Auto);
+            }
         }
     }
 }
