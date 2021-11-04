@@ -10,6 +10,7 @@
         <Button Content="Aspose" HorizontalAlignment="Left" Margin="146,182,0,0" VerticalAlignment="Top" Width="75" Click="OpenAspose"/>
         <Button Content="Spire" HorizontalAlignment="Left" Margin="351,201,0,0" VerticalAlignment="Top" Width="75" Click="OpenSpire"/>
         <Button Content="Gembox" HorizontalAlignment="Left" Margin="543,201,0,0" VerticalAlignment="Top" Width="75" Click="OpenGembox"/>
+        <Button x:Name="OpenCompare" Content="Compare" HorizontalAlignment="Left" Margin="351,94,0,0" VerticalAlignment="Top" Width="75" Click="OpenCompare_Click"/>
 
     </Grid>
 </Window>
