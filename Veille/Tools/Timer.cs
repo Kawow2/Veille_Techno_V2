@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Veille.Tools
 {
-    public class Timer
+    public static class Timer
     {
         private static Stopwatch clock { get; set; } = new Stopwatch();
 
