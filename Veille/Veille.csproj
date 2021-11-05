@@ -147,6 +147,7 @@
     <None Include="FileExample\20 000 lignes.xlsx" />
     <None Include="FileExample\50 lignes.xlsx" />
     <None Include="FileExample\csv.csv" />
+    <None Include="FileExample\dataforchart.xlsx" />
     <None Include="FileExample\xls.xls" />
     <None Include="FileExample\xlsm.xlsm" />
     <None Include="packages.config" />

@@ -1,4 +1,5 @@
 ﻿using GemBox.Spreadsheet;
+using GemBox.Spreadsheet.Charts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,21 @@ namespace Veille.Framework
             Timer.Stop();
             analysis.TimeInMs = Timer.GetTime();
             analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
+            return analysis;
+        }
+
+        public ResultAnalysis CreateChart()
+        {
+            var analysis = new ResultAnalysis();
+            OpenFile("..\\..\\FileExample\\dataforchart.xlsx");
+            Timer.Start();
+            var ws = ef.Worksheets.FirstOrDefault();
+            var chart = ws.Charts.Add<ColumnChart>(ChartGrouping.Standard, "A1", "B100");
+            chart.SelectData(ws.Cells.GetSubrangeAbsolute(0, 0, 100, 1));
+            Timer.Stop();
+            analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
+            analysis.TimeInMs = Timer.GetTime();
+            WriteFile("..\\..\\FileExample\\chart_gembox.xlsx");
             return analysis;
         }
 
