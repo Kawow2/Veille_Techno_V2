@@ -21,6 +21,7 @@
             <TextBlock x:Name="AsposeAnalyse" HorizontalAlignment="Left" Margin="52,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="131" Foreground="#FF150101" Background="#FFCAE4B4" FontFamily="Segoe UI Semibold" Opacity="0.5" Grid.RowSpan="2"><Run Background="#FFD84343" Text="aze"/></TextBlock>
             <Label x:Name="_FileName" Content="" HorizontalAlignment="Left" Margin="519,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.325,0.103" Width="96"/>
             <Button x:Name="CreateChart" Content="Chart" HorizontalAlignment="Left" Margin="384,57,0,0" VerticalAlignment="Top" Width="75" Click="CreateChart_Click"/>
+            <Button x:Name="CreatePivotTable" Content="Pivot Table" HorizontalAlignment="Left" Margin="553,69,0,0" VerticalAlignment="Top" Width="75" Click="CreatePivotTable_Click"/>
         </Grid>
 
     </Grid>

@@ -89,8 +89,16 @@ namespace Veille.Screen
         private void CreateChart_Click(object sender, RoutedEventArgs e)
         {
             AsposeAnalyse.Text=aspose.CreateChart().ToString();
-            SpireAnalyse.Text = gembox.CreateChart().ToString();
-            GemboxAnalyse.Text = spire.CreateChart().ToString();
+            SpireAnalyse.Text = spire.CreateChart().ToString();
+            GemboxAnalyse.Text = gembox.CreateChart().ToString();
         }
-    }
+
+        private void CreatePivotTable_Click(object sender, RoutedEventArgs e)
+        {
+            GemboxAnalyse.Text = gembox.CreatePivotTable().ToString();
+            AsposeAnalyse.Text = aspose.CreatePivotTable().ToString();
+            SpireAnalyse.Text = spire.CreatePivotTable().ToString();
+
+        }
+    }  
 }
