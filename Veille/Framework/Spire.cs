@@ -16,23 +16,34 @@ namespace Veille.Framework
         {
             wb = new Workbook(); ;
         }
-        public ResultAnalysis OpenFile(string fileName, ExcelVersion excelVersion = ExcelVersion.Version2016)
+        public ResultAnalysis OpenFile(string fileName, ExcelVersion excelVersion = ExcelVersion.Version2016, bool analyseTime = true)
         {
             var analysis = new ResultAnalysis();
             var ext = fileName.Split('.')[1];
             if (ext == "csv")
             {
-                Timer.Start();
+                if (analyseTime)
+                    Timer.Start();
                 wb.LoadFromFile(fileName,",");
-                Timer.Stop();
+                if (analyseTime)
+                {
+                    Timer.Stop();
+                    analysis.TimeInMs = Timer.GetTime();
+
+                }
                 analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
-                analysis.TimeInMs = Timer.GetTime();
             }
             else
             {
-                Timer.Start();
+                if (analyseTime)
+                    Timer.Start();
                 wb.LoadFromFile(fileName,excelVersion);
-                Timer.Stop();
+                if (analyseTime)
+                {
+                    Timer.Stop();
+                    analysis.TimeInMs = Timer.GetTime();
+
+                }
                 analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
                 analysis.TimeInMs = Timer.GetTime();
             }
@@ -40,33 +51,32 @@ namespace Veille.Framework
             return analysis;
         }
 
-        public void OpenFile(Stream stream)
-        {
-            wb.LoadFromStream(stream,ExcelVersion.Version2016);
-        }
-
-        public ResultAnalysis WriteFile(string filename)
+        public ResultAnalysis WriteFile(string filename, bool analyseTime = true)
         {
             var analysis = new ResultAnalysis();
-            Timer.Start();
+            if (analyseTime)
+                Timer.Start();
             this.wb.SaveToFile(filename);
-            Timer.Stop();
+            if (analyseTime)
+            {
+                Timer.Stop();
+                analysis.TimeInMs = Timer.GetTime();
+            }
             analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
-            analysis.TimeInMs = Timer.GetTime();
             return analysis;
         }
 
         public ResultAnalysis CreateChart()
         {
             var analysis = new ResultAnalysis();
-            OpenFile("..\\..\\FileExample\\dataforchart.xlsx");
             Timer.Start();
+            OpenFile("..\\..\\FileExample\\dataforchart.xlsx",analyseTime:false);
             var chart = wb.Worksheets[0].Charts.Add(ExcelChartType.ColumnClustered);
             chart.DataRange = wb.Worksheets[0].Range["A1:B100"];
+            WriteFile("..\\..\\FileExample\\chart_spire.xlsx",analyseTime: false);
             Timer.Stop();
             analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
             analysis.TimeInMs = Timer.GetTime();
-            WriteFile("..\\..\\FileExample\\chart_spire.xlsx");
 
             return analysis;
         }
@@ -74,7 +84,8 @@ namespace Veille.Framework
         public ResultAnalysis  CreatePivotTable()
         {
             var analysis = new ResultAnalysis();
-            OpenFile("..\\..\\FileExample\\template.xls",ExcelVersion.Version97to2003);
+            Timer.Start();
+            OpenFile("..\\..\\FileExample\\template.xls",ExcelVersion.Version97to2003, analyseTime: false);
             var cells = wb.Worksheets["data"];
             //cells[0, 0].Value = "Departments";
             //cells[0, 1].Value = "Names";
@@ -92,8 +103,11 @@ namespace Veille.Framework
                 cells[i + 1, 4].Value = (random.Next(10, 101) * 100).ToString();
             }
             var pt = wb.Worksheets[0].PivotTables["TCD"];
-            wb.SaveToFile("..\\..\\FileExample\\spire_pivottable.xlsx");
-            //WriteFile("..\\..\\FileExample\\spire_pivottable.xlsx");
+            //wb.SaveToFile("..\\..\\FileExample\\spire_pivottable.xlsx");
+            WriteFile("..\\..\\FileExample\\spire_pivottable.xlsx", analyseTime: false);
+            Timer.Stop();
+            analysis.TimeInMs = Timer.GetTime();
+            analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
             return analysis;
         }
 

@@ -13,7 +13,7 @@ namespace Veille.Framework
     public class Aspose
     {
         public Workbook Workbook { get; set; } = new Workbook();
-        public ResultAnalysis OpenFile(string filename, LoadOptions lo = null)
+        public ResultAnalysis OpenFile(string filename, LoadOptions lo = null, bool analyseTime = true)
         {
             var analysis = new ResultAnalysis();
             try
@@ -23,33 +23,41 @@ namespace Veille.Framework
                     this.Workbook.Dispose();
                 
                 }
-                Timer.Start();
+                if (analyseTime)
+                    Timer.Start();
                 var fstream = new FileStream(filename, FileMode.Open);
                 this.Workbook = new Workbook(fstream, lo);
-                Timer.Stop();
+                if (analyseTime)
+                {
+                    Timer.Stop();
+                    analysis.TimeInMs = Timer.GetTime();   
+                }
                 analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
-                analysis.TimeInMs = Timer.GetTime();
             } catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
             return analysis;
         }
-        public ResultAnalysis WriteFile(string fileName,SaveFormat ext)
+        public ResultAnalysis WriteFile(string fileName,SaveFormat ext, bool analyseTime = true)
         {
             var analysis = new ResultAnalysis();
-            Timer.Start();
+            if (analyseTime)
+                Timer.Start();
             this.Workbook.Save(fileName,ext);
-            Timer.Stop();
+            if (analyseTime)
+            {
+                Timer.Stop();
+                analysis.TimeInMs = Timer.GetTime();
+            }
             analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage(); 
-            analysis.TimeInMs = Timer.GetTime();
             return analysis;
         }
 
         public ResultAnalysis CreateChart()
         {
             var analysis = new ResultAnalysis();
-            OpenFile("..\\..\\FileExample\\dataforchart.xlsx");
+            OpenFile("..\\..\\FileExample\\dataforchart.xlsx",analyseTime:false);
             Timer.Start();
             var chartIndex = this.Workbook.Worksheets[0].Charts.Add(ChartType.Column, 23, 15, 39, 24);
             var chart = Workbook.Worksheets[0].Charts[chartIndex]; 
@@ -59,7 +67,7 @@ namespace Veille.Framework
             analysis.TimeInMs = Timer.GetTime();
             analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
 
-            WriteFile("..\\..\\FileExample\\chart_aspose.xlsx", SaveFormat.Auto);
+            WriteFile("..\\..\\FileExample\\chart_aspose.xlsx", SaveFormat.Auto,false);
             return analysis;
         }
 
@@ -103,7 +111,7 @@ namespace Veille.Framework
             Timer.Stop();
             analysis.TimeInMs = Timer.GetTime();
             analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
-            Workbook.Save("..\\..\\FileExample\\pivottable_aspose.xlsx");
+            WriteFile("..\\..\\FileExample\\pivottable_aspose.xlsx",SaveFormat.Auto,false);
             
 
             return analysis;

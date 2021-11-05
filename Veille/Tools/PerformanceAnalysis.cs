@@ -13,6 +13,7 @@ namespace Veille.Tools
             var temp = CpuCounter.NextValue();
             Thread.Sleep(500);
             return CpuCounter.NextValue() + "%";
+            //return "";
         }
 
         public static string GetAvailableRAM()
