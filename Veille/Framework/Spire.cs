@@ -48,5 +48,20 @@ namespace Veille.Framework
             analysis.TimeInMs = Timer.GetTime();
             return analysis;
         }
+
+        public ResultAnalysis CreateChart()
+        {
+            var analysis = new ResultAnalysis();
+            OpenFile("..\\..\\FileExample\\dataforchart.xlsx");
+            Timer.Start();
+            var chart = wb.Worksheets[0].Charts.Add(ExcelChartType.ColumnClustered);
+            chart.DataRange = wb.Worksheets[0].Range["A1:B100"];
+            Timer.Stop();
+            analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
+            analysis.TimeInMs = Timer.GetTime();
+            WriteFile("..\\..\\FileExample\\chart_spire.xlsx");
+
+            return analysis;
+        }
     }
 }

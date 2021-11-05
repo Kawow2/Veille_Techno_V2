@@ -1,4 +1,5 @@
 ﻿using Aspose.Cells;
+using Aspose.Cells.Charts;
 using System;
 using System.IO;
 using System.Linq;
@@ -42,5 +43,24 @@ namespace Veille.Framework
             analysis.TimeInMs = Timer.GetTime();
             return analysis;
         }
+
+        public ResultAnalysis CreateChart()
+        {
+            var analysis = new ResultAnalysis();
+            OpenFile("..\\..\\FileExample\\dataforchart.xlsx");
+            Timer.Start();
+            var chartIndex = this.Workbook.Worksheets[0].Charts.Add(ChartType.Column, 23, 15, 39, 24);
+            var chart = Workbook.Worksheets[0].Charts[chartIndex]; 
+            chart.SetChartDataRange("A1:B100", true);
+            chart.Legend.Position = LegendPositionType.Bottom;
+            Timer.Stop();
+            analysis.TimeInMs = Timer.GetTime();
+            analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
+
+            WriteFile("..\\..\\FileExample\\chart_aspose.xlsx", SaveFormat.Auto);
+            return analysis;
+        }
+
+
     }
 }

@@ -85,5 +85,12 @@ namespace Veille.Screen
                 GemboxAnalyse.Text = gembox.WriteFile(path + name + "_gembox" + ext).ToString();
             }
         }
+
+        private void CreateChart_Click(object sender, RoutedEventArgs e)
+        {
+            AsposeAnalyse.Text=aspose.CreateChart().ToString();
+            SpireAnalyse.Text = gembox.CreateChart().ToString();
+            GemboxAnalyse.Text = spire.CreateChart().ToString();
+        }
     }
 }
