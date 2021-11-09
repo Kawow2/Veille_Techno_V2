@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Aspose" HorizontalAlignment="Left" Margin="146,182,0,0" VerticalAlignment="Top" Width="75" Click="OpenAspose"/>
-        <Button Content="Spire" HorizontalAlignment="Left" Margin="351,201,0,0" VerticalAlignment="Top" Width="75" Click="OpenSpire"/>
-        <Button Content="Gembox" HorizontalAlignment="Left" Margin="543,201,0,0" VerticalAlignment="Top" Width="75" Click="OpenGembox"/>
-        <Button x:Name="OpenCompare" Content="Compare" HorizontalAlignment="Left" Margin="351,94,0,0" VerticalAlignment="Top" Width="75" Click="OpenCompare_Click"/>
+        <Button Content="Aspose" HorizontalAlignment="Left" Margin="110,94,0,0" VerticalAlignment="Top" Width="165" Click="OpenAspose" RenderTransformOrigin="0.005,-4.575" Height="42"/>
+        <Button Content="Spire" HorizontalAlignment="Left" Margin="293,94,0,0" VerticalAlignment="Top" Width="165" Click="OpenSpire" Height="42"/>
+        <Button Content="Gembox" HorizontalAlignment="Left" Margin="481,94,0,0" VerticalAlignment="Top" Width="165" Click="OpenGembox" RenderTransformOrigin="0.54,0.467" Height="42"/>
+        <Button x:Name="OpenCompare" Content="Compare" HorizontalAlignment="Left" Margin="293,189,0,0" VerticalAlignment="Top" Width="165" Click="OpenCompare_Click" Height="42"/>
 
     </Grid>
 </Window>
