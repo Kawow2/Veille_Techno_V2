@@ -23,13 +23,12 @@ namespace Veille.Screen
 
         private void OpenFile(object sender, RoutedEventArgs e)
         {
+
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm|CSV files (*.csv)|*.csv";
             var result = openFileDialog.ShowDialog();
             if (((int)result) == 1)
             {
-                if (openFileDialog.FileName == this.Filename)
-                    return;
                 LoadOptions loadOptions = null;
                 var ext = openFileDialog.SafeFileName.Split('.')[1];
                 if (ext == "csv")

@@ -18,10 +18,11 @@ namespace Veille.Framework
         {
             SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
             SpreadsheetInfo.FreeLimitReached += (sender, e) => e.FreeLimitReachedAction = FreeLimitReachedAction.ContinueAsTrial;
-            this.ef = new ExcelFile();
         }
         public ResultAnalysis OpenFile(string filename, bool analyseTime = true)
         {
+            ef = ef ?? new ExcelFile();
+
             var analysis = new ResultAnalysis();
 
             if (analyseTime)
@@ -40,6 +41,8 @@ namespace Veille.Framework
 
         public ResultAnalysis WriteFile(string filename,bool analyseTime = true)
         {
+            ef = ef ?? new ExcelFile();
+
             var analysis = new ResultAnalysis();
             if (analyseTime)
                 Timer.Start();
@@ -55,6 +58,8 @@ namespace Veille.Framework
 
         public ResultAnalysis CreateChart()
         {
+            ef = ef ?? new ExcelFile();
+
             var analysis = new ResultAnalysis();
             OpenFile("..\\..\\FileExample\\dataforchart.xlsx");
             Timer.Start();
@@ -70,6 +75,8 @@ namespace Veille.Framework
 
         public ResultAnalysis CreatePivotTable()
         {
+            ef = ef ?? new ExcelFile();
+
             var analysis = new ResultAnalysis();
             Timer.Start();
             var workbook = CreateDataForPivotTable();
