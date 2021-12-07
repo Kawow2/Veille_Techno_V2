@@ -12,12 +12,11 @@ namespace Veille.Framework
     public class Spire
     {
         public Workbook wb { get; set; } 
-        public Spire()
-        {
-            wb = new Workbook(); ;
-        }
+       
         public ResultAnalysis OpenFile(string fileName, ExcelVersion excelVersion = ExcelVersion.Version2016, bool analyseTime = true)
         {
+            wb = wb ?? new Workbook();
+
             var analysis = new ResultAnalysis();
             var ext = fileName.Split('.')[1];
             if (ext == "csv")
@@ -47,12 +46,12 @@ namespace Veille.Framework
                 analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
                 analysis.TimeInMs = Timer.GetTime();
             }
-            analysis.TimeInMs = Timer.GetTime();
             return analysis;
         }
 
         public ResultAnalysis WriteFile(string filename, bool analyseTime = true)
         {
+            wb = wb ?? new Workbook();
             var analysis = new ResultAnalysis();
             if (analyseTime)
                 Timer.Start();
@@ -68,6 +67,7 @@ namespace Veille.Framework
 
         public ResultAnalysis CreateChart()
         {
+            wb = wb ?? new Workbook();
             var analysis = new ResultAnalysis();
             Timer.Start();
             OpenFile("..\\..\\FileExample\\dataforchart.xlsx",analyseTime:false);
@@ -83,14 +83,11 @@ namespace Veille.Framework
 
         public ResultAnalysis  CreatePivotTable()
         {
+            wb = wb ?? new Workbook();
             var analysis = new ResultAnalysis();
             Timer.Start();
             OpenFile("..\\..\\FileExample\\template.xls",ExcelVersion.Version97to2003, analyseTime: false);
             var cells = wb.Worksheets["data"];
-            //cells[0, 0].Value = "Departments";
-            //cells[0, 1].Value = "Names";
-            //cells[0, 2].Value = "Years of Service";
-            //cells[0, 3].Value = "Salaries";
             var random = new Random();
             var departments = new string[] { "Legal", "Marketing", "Finance", "Planning", "Purchasing" };
             var names = new string[] { "John Doe", "Fred Nurk", "Hans Meier", "Ivan Horvat" };
@@ -103,14 +100,11 @@ namespace Veille.Framework
                 cells[i + 1, 4].Value = (random.Next(10, 101) * 100).ToString();
             }
             var pt = wb.Worksheets[0].PivotTables["TCD"];
-            //wb.SaveToFile("..\\..\\FileExample\\spire_pivottable.xlsx");
             WriteFile("..\\..\\FileExample\\spire_pivottable.xlsx", analyseTime: false);
             Timer.Stop();
             analysis.TimeInMs = Timer.GetTime();
             analysis.CPUUsage = PerformanceAnalysis.GetCurrentCpuUsage();
             return analysis;
         }
-
-        //private Workbook CreateDa
     }
 }

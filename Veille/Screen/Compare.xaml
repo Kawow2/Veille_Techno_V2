@@ -22,6 +22,9 @@
             <Label x:Name="_FileName" Content="" HorizontalAlignment="Left" Margin="519,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.325,0.103" Width="96"/>
             <Button x:Name="CreateChart" Content="Chart" HorizontalAlignment="Left" Margin="384,57,0,0" VerticalAlignment="Top" Width="75" Click="CreateChart_Click"/>
             <Button x:Name="CreatePivotTable" Content="Pivot Table" HorizontalAlignment="Left" Margin="553,69,0,0" VerticalAlignment="Top" Width="75" Click="CreatePivotTable_Click"/>
+            <Label Content="Aspose" HorizontalAlignment="Left" Margin="94,225,0,0" VerticalAlignment="Top"/>
+            <Label Content="Spire" HorizontalAlignment="Left" Margin="237,225,0,0" VerticalAlignment="Top"/>
+            <Label Content="Gembox" HorizontalAlignment="Left" Margin="553,225,0,0" VerticalAlignment="Top"/>
         </Grid>
 
     </Grid>
