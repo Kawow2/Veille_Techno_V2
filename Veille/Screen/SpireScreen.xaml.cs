@@ -24,7 +24,10 @@ namespace Veille.Screen
             if (((int)result) == 1)
             {
                 if (openFileDialog.SafeFileName == this.Filename)
+                {
+                    System.Windows.MessageBox.Show("Ce fichier est déjà chargé");
                     return;
+                }
                 this.Filename = openFileDialog.SafeFileName;
                 this._Time.Content = spire.OpenFile(openFileDialog.FileName);
                 this._FileName.Content = this.Filename;

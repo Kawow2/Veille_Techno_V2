@@ -32,7 +32,10 @@ namespace Veille.Screen
             {
                 Mouse.SetCursor(System.Windows.Input.Cursors.Wait);
                 if (openFileDialog.FileName == this.Filename)
-                    aspose.Workbook = new Workbook();
+                {
+                    System.Windows.MessageBox.Show("Ce fichier est déjà chargé");
+                    return;
+                }
                 LoadOptions loadOptions = null;
                 var ext = openFileDialog.SafeFileName.Split('.')[1];
                 if (ext == "csv")

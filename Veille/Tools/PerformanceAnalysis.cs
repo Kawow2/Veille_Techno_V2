@@ -10,10 +10,11 @@ namespace Veille.Tools
       
         public static string GetCurrentCpuUsage()
         {
-            //var temp = CpuCounter.NextValue();
-            //Thread.Sleep(100);
-            return CpuCounter.NextValue() + "%";
-            //return "";
+            var cs1 = CpuCounter.NextSample();
+            System.Threading.Thread.Sleep(100);
+            var cs2 = CpuCounter.NextSample();
+            var finalCpuCounter = CounterSample.Calculate(cs1, cs2);
+            return finalCpuCounter + " %";
         }
 
         public static string GetAvailableRAM()
