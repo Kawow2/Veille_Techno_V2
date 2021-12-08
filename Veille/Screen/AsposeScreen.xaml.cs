@@ -1,6 +1,7 @@
 ﻿using Aspose.Cells;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using Veille.Framework;
 
 namespace Veille.Screen
@@ -29,6 +30,12 @@ namespace Veille.Screen
             var result = openFileDialog.ShowDialog();
             if (((int)result) == 1)
             {
+                Mouse.SetCursor(System.Windows.Input.Cursors.Wait);
+                if (openFileDialog.FileName == this.Filename)
+                {
+                    System.Windows.MessageBox.Show("Ce fichier est déjà chargé");
+                    return;
+                }
                 LoadOptions loadOptions = null;
                 var ext = openFileDialog.SafeFileName.Split('.')[1];
                 if (ext == "csv")
@@ -39,6 +46,7 @@ namespace Veille.Screen
                 var time = aspose.OpenFile(Filename, loadOptions);
                 this._Time.Content = time;
                 this._FileName.Content = openFileDialog.SafeFileName;
+                Mouse.SetCursor(System.Windows.Input.Cursors.Arrow);
             }
         }
 

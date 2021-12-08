@@ -46,7 +46,10 @@ namespace Veille.Screen
             if (((int)result) == 1)
             {
                 if (openFileDialog.FileName == this.Filename)
+                {
+                    System.Windows.MessageBox.Show("Ce fichier est déjà chargé");
                     return;
+                }
                 //aspose
                 LoadOptions loadOptions = null;
                 var ext = openFileDialog.SafeFileName.Split('.')[1];
