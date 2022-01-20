@@ -13,11 +13,7 @@ namespace Veille.Tools
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("Time in ms : " + TimeInMs + "\n");
-            sb.Append("CPU Usage : " + CPUUsage + "\n");
-            sb.Append("CPU Peak : " + CPUPeak + "\n");
-            sb.Append("Ram usage: " + RAMUsage + "\n");
-
+            sb.Append("Time in ms : " + TimeInMs + "\n"); 
             return sb.ToString();
         }
     }

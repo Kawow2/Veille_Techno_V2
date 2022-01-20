@@ -13,18 +13,19 @@
                 <RowDefinition Height="68*"/>
                 <RowDefinition Height="68*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="OpenFile" Content="Ouvrir un fichier" HorizontalAlignment="Left" Margin="67,37,0,0" VerticalAlignment="Top" Width="75" Click="OpenFile_Click"/>
-            <Button x:Name="WriteFile" Content="Ecrire un fichier" HorizontalAlignment="Left" Margin="199,37,0,0" VerticalAlignment="Top" Width="75" Click="WriteFile_Click"/>
-            <TextBlock HorizontalAlignment="Left" Margin="67,10,0,0" TextWrapping="Wrap" Text="Cet écran permet de comparer les performances des 3 framework." VerticalAlignment="Top" Height="22" Width="658"/>
-            <TextBlock x:Name="SpireAnalyse" HorizontalAlignment="Left" Margin="235,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="131" Foreground="#FF150101" Background="#FFCAE4B4" FontFamily="Segoe UI Semibold" Opacity="0.5" Grid.RowSpan="2"><Run Background="#FFD84343" Text="aze"/></TextBlock>
-            <TextBlock x:Name="GemboxAnalyse" HorizontalAlignment="Left" Margin="530,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="131" Foreground="#FF150101" Background="#FFCAE4B4" FontFamily="Segoe UI Semibold" Opacity="0.5" Grid.RowSpan="2"><Run Background="#FFD84343" Text="aze"/></TextBlock>
-            <TextBlock x:Name="AsposeAnalyse" HorizontalAlignment="Left" Margin="52,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="131" Foreground="#FF150101" Background="#FFCAE4B4" FontFamily="Segoe UI Semibold" Opacity="0.5" Grid.RowSpan="2"><Run Background="#FFD84343" Text="aze"/></TextBlock>
-            <Label x:Name="_FileName" Content="" HorizontalAlignment="Left" Margin="519,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.325,0.103" Width="96"/>
-            <Button x:Name="CreateChart" Content="Chart" HorizontalAlignment="Left" Margin="384,57,0,0" VerticalAlignment="Top" Width="75" Click="CreateChart_Click"/>
-            <Button x:Name="CreatePivotTable" Content="Pivot Table" HorizontalAlignment="Left" Margin="553,69,0,0" VerticalAlignment="Top" Width="75" Click="CreatePivotTable_Click"/>
-            <Label Content="Aspose" HorizontalAlignment="Left" Margin="94,225,0,0" VerticalAlignment="Top"/>
-            <Label Content="Spire" HorizontalAlignment="Left" Margin="237,225,0,0" VerticalAlignment="Top"/>
-            <Label Content="Gembox" HorizontalAlignment="Left" Margin="553,225,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="OpenFile" Content="Ouvrir un fichier" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="150" Click="OpenFile_Click" Height="40"/>
+            <Button x:Name="WriteFile" Content="Ecrire un fichier" HorizontalAlignment="Left" Margin="199,52,0,0" VerticalAlignment="Top" Width="150" Click="WriteFile_Click" Height="40"/>
+            <TextBlock HorizontalAlignment="Left" Margin="67,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="658"><Run Text="Cet écran permet de comparer les performances des 3 framework."/></TextBlock>
+            <TextBlock x:Name="SpireAnalyse" HorizontalAlignment="Left" Margin="289,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="131"  Foreground="#FF150101" FontFamily="Segoe UI Semibold" Opacity="0.5" Grid.RowSpan="2"><Run Text="Pas de performance enregistré pour l'instant"/><LineBreak/><Run/></TextBlock>
+            <TextBlock x:Name="GemboxAnalyse" HorizontalAlignment="Left" Margin="519,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="131" Foreground="#FF150101" FontFamily="Segoe UI Semibold" Opacity="0.5" Grid.RowSpan="2"><Run Text="Pas de performance enregistré pour l'instant"/><LineBreak/><Run/></TextBlock>
+            <TextBlock x:Name="AsposeAnalyse" HorizontalAlignment="Left" Margin="29,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" Width="131" Foreground="#FF150101" FontFamily="Segoe UI Semibold" Opacity="0.5" Grid.RowSpan="2"><Run Text="Pas de performance enregistré pour l'instant"/><LineBreak/><Run/></TextBlock>
+            <Label x:Name="_FileName" Content="" HorizontalAlignment="Left" Margin="629,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.325,0.103" Width="96"/>
+            <Button x:Name="CreateChart" Content="Chart" HorizontalAlignment="Left" Margin="391,52,0,0" VerticalAlignment="Top" Width="150" Click="CreateChart_Click" Height="40"/>
+            <Button x:Name="CreatePivotTable" Content="Pivot Table" HorizontalAlignment="Left" Margin="575,52,0,0" VerticalAlignment="Top" Width="150" Click="CreatePivotTable_Click" Height="40"/>
+            <Label Content="Performance Aspose : " HorizontalAlignment="Left" Margin="29,237,0,0" VerticalAlignment="Top"/>
+            <Label Content="Performance Spire : " HorizontalAlignment="Left" Margin="274,237,0,0" VerticalAlignment="Top"/>
+            <Label Content="Performance Gembox : " HorizontalAlignment="Left" Margin="519,237,0,0" VerticalAlignment="Top"/>
+            <Label Content="Nom du fichier : " Margin="532,142,129,97"/>
         </Grid>
 
     </Grid>
